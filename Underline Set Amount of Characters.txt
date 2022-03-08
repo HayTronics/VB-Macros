@@ -1,0 +1,15 @@
+Sub Underline1()
+    Dim numOfLines As Integer
+    numOfLines = ActiveDocument.BuiltInDocumentProperties("NUMBER OF LINES")
+    Selection.HomeKey Unit:=wdStory
+
+    For x1 = 1 To numOfLines
+        Selection.HomeKey Unit:=wdLine
+        Selection.EndKey Unit:=wdLine, Extend:=wdExtend
+        char_count = Len(Selection.Range.Text)
+        If char_count < 30 Then
+            Selection.Font.Underline = True
+        End If
+        Selection.MoveDown Unit:=wdLine, Count:=1
+    Next x1
+End Sub
